@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-django
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: web-deploy
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: web-deploy
+    spec:
+      containers:
+      - name: nginx-d
+        image: lonlee/mynginxd_ch10:0.3
+        ports:
+        - containerPort: 80
+
+      - name: django-web
+        image: lonlee/mydjango_ch10:0.2
+        ports:
+        - containerPort: 8000
+

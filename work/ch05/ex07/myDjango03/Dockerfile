@@ -11,4 +11,3 @@ WORKDIR ./myapp
 CMD gunicorn --bind 0.0.0.0:8000 myapp.wsgi:application
 
 EXPOSE 8000
-
