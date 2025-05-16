@@ -1,0 +1,1 @@
+tail -f /batch/web-logs/server.log

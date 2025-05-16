@@ -1,0 +1,17 @@
+{
+	"name": "crud-webserver",
+	"version": "1.0.0",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc"
+	},
+	"dependencies": {
+		"express": "^5.1.0",
+		"winston": "^3.17.0"
+	},
+	"devDependencies": {
+		"@types/express": "^5.0.1",
+		"@types/node": "^22.15.18",
+		"typescript": "^5.0.0"
+	}
+}

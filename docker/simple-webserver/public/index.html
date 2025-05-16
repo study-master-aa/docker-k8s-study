@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>simple-web</title>
+  <style>
+    #chatBox { border: 1px solid #000; width: 800px; height: 400px; overflow-y: auto; margin-bottom: 10px; padding: 5px; }
+    #messageInput { width: 500px; height: 20px; }
+  </style>
+</head>
+<body>
+  <div id="chatBox"></div>
+  <input type="text" id="messageInput" placeholder="메시지 입력" />
+  <button id="sendButton">보내기</button>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+
+    sendButton.addEventListener('click', async () => {
+      const message = messageInput.value.trim();
+      if (!message) return;
+
+      const response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+
+      const data = await response.json();
+      if (data.reply) {
+        const p = document.createElement('p');
+        p.textContent = `[${new Date().toLocaleString()}] ${data.reply}`;
+        chatBox.appendChild(p);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        messageInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
