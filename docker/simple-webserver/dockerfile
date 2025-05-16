@@ -25,5 +25,7 @@ COPY --from=my-build /app/package.json ./package.json
 # production 환경 런타임시 필요한 패키지만 설치
 RUN npm install --production
 
+EXPOSE 3000
+
 # 실행
 CMD ["node", "dist/index.js"]
