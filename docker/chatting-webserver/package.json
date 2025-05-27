@@ -1,0 +1,23 @@
+{
+  "name": "chatting-webserver",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:qa": "node --env-file=./configs/.env.qa dist/server.js",
+    "start:live": "node --env-file=./configs/.env.live dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@types/express": "^5.0.2",
+    "typescript": "^5.8.3"
+  }
+}
