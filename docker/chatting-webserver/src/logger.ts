@@ -12,10 +12,16 @@ const logFormat = winston.format.printf(({ level, message, timestamp }) => {
     return `[${timestamp}][${level}] ${message}`;
 });
 
+function getKSTTimestamp() {
+    const date = new Date();
+    const kst = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+    return kst.toISOString().replace("T", " ").substring(0, 19);
+}
+
 export const logger = winston.createLogger({
     level: "silly",
     format: winston.format.combine(
-        winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+        winston.format.timestamp({ format: getKSTTimestamp }),
         logFormat
     ),
     transports: [
