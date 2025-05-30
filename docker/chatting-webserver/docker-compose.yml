@@ -1,0 +1,71 @@
+version: '3.8'
+services: 
+  # ---------- Database service ----------
+  db:
+    container_name: mydb
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chat
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-volume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pexample"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # ---------- Application service ----------
+  app:
+    image: chatting-webserver:1.0.0
+    volumes:
+      - web-volume:/app/logs
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./configs/.env.live
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ---------- ELK Stack services ----------
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:8.18.1
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - my-network
+  
+  kibana:
+    image: kibana:8.18.1
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - my-network
+
+  fluentbit:
+    image: fluent/fluent-bit:4.0.2
+    volumes:
+      - ./elk/fluentbit.conf:/fluent-bit/etc/fluent-bit.conf:ro
+      - web-volume:/app/logs
+    networks:
+      - my-network
+  
+volumes:
+  db-volume:
+  web-volume:
+
+networks:
+  my-network:

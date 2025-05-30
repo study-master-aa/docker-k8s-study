@@ -1,0 +1,26 @@
+{
+	"name": "chatting-webserver",
+	"version": "1.0.0",
+	"main": "dist/server.js",
+	"scripts": {
+		"build": "tsc"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"express": "^5.1.0",
+		"mysql2": "^3.14.1",
+		"reflect-metadata": "^0.2.2",
+		"socket.io": "^4.8.1",
+		"typeorm": "^0.3.24",
+		"winston": "^3.17.0",
+		"winston-daily-rotate-file": "^5.0.0"
+	},
+	"devDependencies": {
+		"@types/express": "^5.0.0",
+		"@types/node": "^22.14.0",
+		"typescript": "^5.8.3"
+	}
+}
