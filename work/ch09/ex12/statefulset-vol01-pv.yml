@@ -10,5 +10,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: pv-sfs-test01
   hostPath:
-    path: /home/lon/work/volhost01
+    path: /volhost01
     type: DirectoryOrCreate

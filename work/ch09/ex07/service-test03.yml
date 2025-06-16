@@ -11,5 +11,3 @@ spec:
     nodePort: 31002
     port: 80
     targetPort: 80
-  externalIPs:
-  - 10.0.2.7

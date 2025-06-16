@@ -4,7 +4,7 @@ metadata:
   name: nginx-volume-02
 spec:
   nodeSelector:
-    kubernetes.io/hostname: myserver03
+    kubernetes.io/hostname: minikube
   containers:
   - name: nginx-test01
     image: nginx:latest
@@ -14,5 +14,5 @@ spec:
   volumes:
   - name: hostpath-test01
     hostPath:
-      path: /home/lon/work/volhost01
+      path: '/volhost01' # 호스트 경로. (minikube의 경로)
       type: DirectoryOrCreate
