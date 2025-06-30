@@ -78,7 +78,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'mysecretpassword',
-        'HOST': '10.0.2.7',
+        'HOST': 'postgres-service',
         'PORT': 5432,
     }
 }
