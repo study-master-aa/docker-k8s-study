@@ -1,6 +1,0 @@
-[submodule "work/ch11/github-actions-practice"]
-	path = work/ch11/github-actions-practice
-	url = https://github.com/study-master-aa/github-actions-practice
-[submodule "work/ch11/argocd-practice"]
-	path = work/ch11/argocd-practice
-	url = https://github.com/study-master-aa/argocd-practice
